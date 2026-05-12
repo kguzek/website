@@ -65,7 +65,7 @@
     "react-hook-form": "^7.75.0",
     "sharp": "^0.34.5",
     "sonner": "^2.0.7",
-    "tailwind-merge": "^3.5.0",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tvmaze-wrapper-ts": "^2.1.2",
     "uuid": "^14.0.0",
