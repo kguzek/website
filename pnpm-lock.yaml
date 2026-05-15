@@ -81,8 +81,8 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       js-cookie:
-        specifier: ^3.0.5
-        version: 3.0.5
+        specifier: ^3.0.6
+        version: 3.0.6
       lint-staged:
         specifier: ^16.4.0
         version: 16.4.0
@@ -3875,9 +3875,9 @@ packages:
   js-cookie@2.2.1:
     resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==}
 
-  js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
+  js-cookie@3.0.6:
+    resolution: {integrity: sha512-mYhz0Og/Wv8bZJcBC6rRzYG+rYf8DyQSK3rcUbuGHQIgSsX6uynAIVoaPgqf0udH2AGS953hGFy3w6on1rJzMw==}
+    engines: {node: '>=20'}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -9516,7 +9516,7 @@ snapshots:
 
   js-cookie@2.2.1: {}
 
-  js-cookie@3.0.5: {}
+  js-cookie@3.0.6: {}
 
   js-tokens@4.0.0: {}
 
