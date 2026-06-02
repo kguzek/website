@@ -18,7 +18,6 @@ function stackProxies(...factories: MiddlewareFactory[]): CustomMiddleware {
 
 export default stackProxies(
   rateLimitMiddleware({
-    matcher: (request) => ["GET", "HEAD"].includes(request.method.toUpperCase()),
     maxRequests: 2_000,
   }),
   rateLimitMiddleware({
