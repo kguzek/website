@@ -8,6 +8,7 @@ build
 .next
 .DS_Store
 .env.local
+tsconfig.tsbuildinfo
 
 # Shell scripts
 *.sh

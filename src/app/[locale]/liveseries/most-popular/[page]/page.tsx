@@ -1,16 +1,42 @@
 import type { Show as TvMazeShow } from "tvmaze-wrapper-ts";
 import { getTranslations } from "next-intl/server";
-import { getAllShows } from "tvmaze-wrapper-ts";
 
 import { ErrorComponent } from "@/components/error/component";
-import {
-  RESULTS_PER_PAGE,
-  TvShowPreviewList,
-} from "@/components/liveseries/tv-show-preview-list";
+import { TvShowPreviewList } from "@/components/liveseries/tv-show-preview-list";
+import { TVMAZE_SCRAPER_BASE_URL } from "@/lib/constants";
 import { ErrorCode } from "@/lib/enums";
 import { getTitle, isNumber } from "@/lib/util";
 
-const RESULTS_PER_PAGE_FROM_API = 250;
+const MOST_POPULAR_REVALIDATE_SECONDS = 60 * 60 * 24;
+
+interface MostPopularShowsResponse {
+  meta: {
+    page: number;
+    start: number;
+    end: number;
+    totalShows: number;
+    totalPages: number;
+  };
+  data: TvMazeShow[];
+}
+
+function getMostPopularShowsUrl(page: number) {
+  return new URL(`/shows/most-popular/${page}.json`, TVMAZE_SCRAPER_BASE_URL).toString();
+}
+
+async function getMostPopularShows(page: number): Promise<MostPopularShowsResponse> {
+  const response = await fetch(getMostPopularShowsUrl(page), {
+    next: { revalidate: MOST_POPULAR_REVALIDATE_SECONDS },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `TVmaze scraper returned ${response.status} for most popular page ${page}`,
+    );
+  }
+
+  return (await response.json()) as MostPopularShowsResponse;
+}
 
 export async function generateMetadata() {
   const t = await getTranslations();
@@ -31,17 +57,18 @@ export default async function MostPopular({
   }
 
   const pageFrontend = +pageString;
-  // Pages in TVmaze API are 0-indexed
-  const pageBackend =
-    Math.ceil((pageFrontend * RESULTS_PER_PAGE) / RESULTS_PER_PAGE_FROM_API) - 1;
+  if (pageFrontend < 1) {
+    return <ErrorComponent errorCode={ErrorCode.NotFound} />;
+  }
 
-  const startIdx = ((pageFrontend - 1) * RESULTS_PER_PAGE) % RESULTS_PER_PAGE_FROM_API;
   let results: TvMazeShow[] = [];
+  let total = 0;
   try {
-    const allResults = await getAllShows(pageBackend);
-    results = allResults.slice(startIdx, startIdx + RESULTS_PER_PAGE);
+    const { data, meta } = await getMostPopularShows(pageFrontend);
+    results = data;
+    total = meta.totalShows;
   } catch (error) {
-    console.error("Error fetching search results:", error);
+    console.error("Error fetching most popular shows:", error);
   }
   // if (result.ok && result.data.page !== +page) {
   //   redirect(`./${result.data.page}`);
@@ -52,12 +79,7 @@ export default async function MostPopular({
       <h2 className="my-6 text-3xl font-bold">
         {getTitle(t("liveSeries.mostPopular.title"), t("liveSeries.title"))}
       </h2>
-      <TvShowPreviewList
-        tvShows={results}
-        page={pageFrontend}
-        // TODO: obtain this value from the API
-        total={85615} // https://api.tvmaze.com/shows?page=342 at the time of writing
-      />
+      <TvShowPreviewList tvShows={results} page={pageFrontend} total={total} />
     </>
   );
 }
