@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 export function useScroll() {
-  const [scroll, setScroll] = useState({ scrollY: 0 });
+  const [scrollY, setScrollY] = useState(0);
 
   function handleScroll() {
-    setScroll({ scrollY: window.scrollY });
+    setScrollY(window.scrollY);
   }
 
   useEffect(() => {
@@ -16,5 +16,5 @@ export function useScroll() {
     };
   }, []);
 
-  return scroll;
+  return { scrollY };
 }

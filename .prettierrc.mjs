@@ -6,7 +6,7 @@ const config = {
   plugins: ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   importOrder: [
     "<TYPES>",
-    "^(react|next|payload)(/.+)?$",
+    "^(react)(/.+)?$",
     "<THIRD_PARTY_MODULES>",
     "",
     "<TYPES>^(@/)",
