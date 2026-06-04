@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { hydrateRoot } from "react-dom/client";
 
@@ -18,7 +18,9 @@ function isLocaleSwitchNav(from: string, to: string): boolean {
 
 function Root() {
   const [path, setPath] = useState(window.location.pathname);
+  const preserveScrollRef = useRef(false);
   const navigate = useCallback((to: string, options?: { scroll?: boolean }) => {
+    preserveScrollRef.current = options?.scroll === false;
     if (options?.scroll !== false) {
       const current = window.location.pathname;
       sessionStorage.setItem(`scroll:${current}`, window.scrollY.toString());
@@ -29,6 +31,11 @@ function Root() {
 
   // Restore scroll position after route changes
   useEffect(() => {
+    if (preserveScrollRef.current) {
+      preserveScrollRef.current = false;
+      return;
+    }
+
     const saved = sessionStorage.getItem(`scroll:${path}`);
     if (saved !== null) {
       const y = parseInt(saved, 10);

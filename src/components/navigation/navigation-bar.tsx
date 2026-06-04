@@ -1,7 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Languages } from "lucide-react";
 
+import type { Locale } from "@/lib/locale";
 import { useScroll } from "@/lib/hooks/scroll";
 import { cn } from "@/lib/utils";
 
@@ -13,14 +15,69 @@ export function NavigationBar({
   locale,
 }: {
   pathname: string;
-  locale: "en" | "pl";
+  locale: Locale;
 }) {
   const { scrollY } = useScroll();
-  const hamburgerRef = useRef<HTMLInputElement>(null);
+  const [selectedLocale, setSelectedLocale] = useState(locale);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const [isLanguageMenuMounted, setIsLanguageMenuMounted] = useState(false);
+  const languageMenuRef = useRef<HTMLDivElement>(null);
+  const languageButtonRef = useRef<HTMLButtonElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  function closeMenu() {
-    if (hamburgerRef.current == null) return;
-    hamburgerRef.current.checked = false;
+  useEffect(() => {
+    setSelectedLocale(locale);
+  }, [locale]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isLanguageMenuMounted) return;
+
+    function handlePointerDown(event: PointerEvent) {
+      if (languageMenuRef.current?.contains(event.target as Node)) return;
+      closeLanguageMenu();
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      closeLanguageMenu(true);
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isLanguageMenuMounted]);
+
+  function openLanguageMenu() {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setSelectedLocale(locale);
+    setIsLanguageMenuMounted(true);
+    requestAnimationFrame(() => setIsLanguageMenuOpen(true));
+  }
+
+  function closeLanguageMenu(returnFocus = false) {
+    setIsLanguageMenuOpen(false);
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => {
+      setIsLanguageMenuMounted(false);
+      if (returnFocus) languageButtonRef.current?.focus();
+    }, 200);
+  }
+
+  function toggleLanguageMenu() {
+    if (isLanguageMenuOpen) {
+      closeLanguageMenu();
+      return;
+    }
+    openLanguageMenu();
   }
 
   return (
@@ -33,48 +90,53 @@ export function NavigationBar({
       )}
     >
       <Logo size={80} />
-      <a
-        href={`/${locale}`}
-        onClick={closeMenu}
-        className="font-bold whitespace-nowrap sm:text-3xl"
-      >
+      <a href={`/${locale}`} className="font-bold whitespace-nowrap sm:text-3xl">
         Konrad Guzek
       </a>
       <div className="ml-auto flex items-center self-stretch">
-        <label
-          aria-controls="menu"
-          className="peer z-30 flex cursor-pointer flex-col justify-center p-4 lg:hidden"
-        >
-          <input
-            type="checkbox"
-            id="hamburger"
-            className="peer hidden"
-            ref={hamburgerRef}
-            aria-controls="menu"
-            aria-expanded="false"
-            onChange={(event_) =>
-              event_.target.setAttribute(
-                "aria-expanded",
-                event_.target.checked.toString(),
-              )
-            }
-          />
-          <div className="bg-primary mb-1.5 w-6 transform rounded-full pt-0.5 transition-transform duration-300 peer-checked:translate-y-2 peer-checked:-rotate-45" />
-          <div className="bg-primary mb-1.5 w-6 rounded-full pt-0.5 opacity-100 transition-opacity peer-checked:opacity-0" />
-          <div className="bg-primary w-6 transform rounded-full pt-0.5 transition-transform duration-300 peer-checked:-translate-y-2 peer-checked:rotate-45" />
-        </label>
-        <label
-          htmlFor="hamburger"
-          aria-controls="menu"
-          className="bg-background-strong/25 pointer-events-none fixed top-0 left-0 z-10 h-screen w-screen opacity-0 backdrop-blur-sm transition-opacity duration-300 peer-has-checked:pointer-events-auto peer-has-checked:opacity-100 lg:hidden"
-        />
+        <div ref={languageMenuRef} className="relative flex items-center lg:hidden">
+          <button
+            ref={languageButtonRef}
+            type="button"
+            aria-label="Select language"
+            aria-haspopup="menu"
+            aria-expanded={isLanguageMenuOpen}
+            aria-controls="mobile-language-menu"
+            onClick={toggleLanguageMenu}
+            className="border-background-soft bg-background-strong/45 text-primary-strong hover:bg-background-strong/70 focus:bg-background-strong/70 flex items-center gap-2 rounded-md border border-solid px-3 py-2 text-xs font-semibold transition-colors outline-none"
+          >
+            <Languages className="size-4" aria-hidden="true" />
+            {selectedLocale.toUpperCase()}
+          </button>
+          {isLanguageMenuMounted && (
+            <div
+              id="mobile-language-menu"
+              role="menu"
+              aria-label="Language"
+              className={cn(
+                "border-background-soft bg-background-strong/70 absolute top-full right-0 z-20 mt-2 rounded-lg border border-solid p-2 shadow-lg backdrop-blur-2xl transition-all duration-200 ease-out",
+                isLanguageMenuOpen
+                  ? "visible translate-y-0 scale-100 opacity-100"
+                  : "invisible -translate-y-1 scale-95 opacity-0",
+              )}
+            >
+              <LanguageSelector
+                locale={locale}
+                pathname={pathname}
+                layout="vertical"
+                itemRole="menuitemradio"
+                onSelect={() => window.setTimeout(() => closeLanguageMenu(), 300)}
+              />
+            </div>
+          )}
+        </div>
         <ul
           id="menu"
           role="menubar"
           aria-label="navigation menu"
-          className="border-background-soft bg-gradient-main/50 shadow-background-strong invisible absolute top-0 right-0 z-20 w-full origin-top translate-y-[-100%] items-center gap-6 rounded-b-lg border-0 border-b py-4 opacity-0 shadow-lg backdrop-blur-2xl transition-all duration-300 select-none peer-has-checked:visible peer-has-checked:translate-y-0 peer-has-checked:scale-100 peer-has-checked:opacity-100 sm:top-3 sm:right-10 sm:w-[50%] sm:origin-top-right sm:translate-y-0 sm:scale-[25%] sm:rounded-lg sm:border sm:border-solid lg:visible lg:static lg:flex lg:w-full lg:scale-100 lg:transform-none lg:border-none lg:bg-transparent lg:pt-0 lg:pb-0 lg:opacity-100 lg:shadow-none lg:backdrop-blur-none"
+          className="hidden items-center gap-6 lg:flex"
         >
-          <li className="flex justify-center py-2">
+          <li className="flex justify-center">
             <LanguageSelector locale={locale} pathname={pathname} />
           </li>
         </ul>

@@ -382,6 +382,42 @@
   opacity: 1;
 }
 
+::view-transition-group(navbar) {
+  z-index: 0;
+}
+
+.language-selector-indicator {
+  view-transition-name: language-selector-indicator;
+  contain: layout;
+}
+
+::view-transition-group(language-selector-indicator) {
+  z-index: 1;
+}
+
+::view-transition-old(language-selector-indicator),
+::view-transition-new(language-selector-indicator) {
+  animation-duration: 300ms;
+}
+
+::view-transition-group(language-selector-label-desktop-en),
+::view-transition-group(language-selector-label-desktop-pl),
+::view-transition-group(language-selector-label-mobile-en),
+::view-transition-group(language-selector-label-mobile-pl) {
+  z-index: 2;
+}
+
+::view-transition-old(language-selector-label-desktop-en),
+::view-transition-new(language-selector-label-desktop-en),
+::view-transition-old(language-selector-label-desktop-pl),
+::view-transition-new(language-selector-label-desktop-pl),
+::view-transition-old(language-selector-label-mobile-en),
+::view-transition-new(language-selector-label-mobile-en),
+::view-transition-old(language-selector-label-mobile-pl),
+::view-transition-new(language-selector-label-mobile-pl) {
+  animation: none;
+}
+
 @media (max-width: 760px) {
   .project-card {
     display: flex;
