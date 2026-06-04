@@ -4,6 +4,8 @@ export const WEBSITE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL || process.env.WE
 export const PRODUCTION_URL = WEBSITE_URL || "https://www.guzek.uk";
 export const GITHUB_URL = "https://github.com/kguzek";
 export const LIVESERIES_SERVER_HOMEPAGE = `${GITHUB_URL}/guzek-uk-liveseries-server`;
+export const TVMAZE_SCRAPER_BASE_URL =
+  process.env.TVMAZE_SCRAPER_BASE_URL || "https://tvmaze-scraper.guzek.uk";
 export const EMAIL_FROM_ADDRESS = "noreply@guzek.uk";
 export const EMAIL_FROM_NAME = "Konrad Guzek";
 

@@ -22,8 +22,8 @@ const REPO_NAME = "website";
 
 const BETA_INFO = {
   enabled: false,
-  url: `${GITHUB_URL}/${REPO_NAME}/pull/19`,
-  label: "next-intl",
+  url: `${GITHUB_URL}/${REPO_NAME}/pull/24`,
+  label: "dev",
 };
 
 export async function Footer() {
