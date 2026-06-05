@@ -229,25 +229,27 @@ export const projectDescriptions: Record<string, Record<string, React.ReactNode>
     pl: (
       <>
         <p>
-          This project is a modern web application built for a home renovation services
-          company. It showcases a contractor directory and a user-friendly interface
-          designed with Lucide icons. The Next.js application contains two websites with
-          shared components and files, differentiated by request URL.
+          Ten projekt to nowoczesna aplikacja internetowa zbudowana dla firmy świadczącej
+          usługi remontowe. Prezentuje katalog wykonawców oraz przyjazny interfejs
+          użytkownika zaprojektowany z użyciem ikon Lucide. Aplikacja Next.js zawiera dwie
+          strony internetowe współdzielące komponenty i pliki, rozróżniane na podstawie
+          adresu URL żądania.
         </p>
         <ul>
           <li>
-            <strong>Next.js</strong> – Utilized for server-side rendering and static site
-            generation.
+            <strong>Next.js</strong> – wykorzystany do renderowania po stronie serwera i
+            generowania statycznych stron.
           </li>
           <li>
-            <strong>TypeScript</strong> – Ensures a robust and maintainable codebase.
+            <strong>TypeScript</strong> – zapewnia solidną i łatwą w utrzymaniu bazę kodu.
           </li>
           <li>
-            <strong>Tailwind CSS</strong> – Provides a responsive and customizable design
-            system.
+            <strong>Tailwind CSS</strong> – zapewnia responsywny i elastyczny system
+            projektowania.
           </li>
           <li>
-            <strong>Lucide Icons</strong> – Adds a modern touch to the user interface.
+            <strong>Lucide Icons</strong> – nadaje interfejsowi użytkownika nowoczesny
+            charakter.
           </li>
         </ul>
       </>
@@ -282,25 +284,26 @@ export const projectDescriptions: Record<string, Record<string, React.ReactNode>
     pl: (
       <>
         <p>
-          <strong>SUILO Website v2</strong> is a responsive single-page-app website
-          created for the School Council of Bilingual High School no. 1, patroned by
-          Edward Dembowski, in Gliwice, Poland. It was tailor-made to the specifications
-          of the Student Council, and includes the following functions:
+          <strong>SUILO Website v2</strong> to responsywna aplikacja typu single-page
+          stworzona dla Samorządu Uczniowskiego I Liceum Ogólnokształcącego Dwujęzycznego
+          im. Edwarda Dembowskiego w Gliwicach. Została przygotowana zgodnie z potrzebami
+          Samorządu Uczniowskiego i zawiera między innymi:
         </p>
         <ul>
-          <li>News feed</li>
-          <li>Event calendar</li>
-          <li>Custom events</li>
-          <li>Email notifications</li>
-          <li>Daily "lucky number"</li>
-          <li>Custom-made built-in CMS</li>
-          <li>Second-hand textbook marketplace</li>
-          <li>Platform for hosting Student Council elections</li>
-          <li>And much more!</li>
+          <li>Aktualności</li>
+          <li>Kalendarz wydarzeń</li>
+          <li>Własne wydarzenia</li>
+          <li>Powiadomienia e-mail</li>
+          <li>Codzienny „szczęśliwy numerek”</li>
+          <li>Wbudowany CMS stworzony na potrzeby projektu</li>
+          <li>Giełdę używanych podręczników</li>
+          <li>Platformę do przeprowadzania wyborów do Samorządu Uczniowskiego</li>
+          <li>I wiele więcej!</li>
         </ul>
         <p>
-          The UI was designed from scratch by <strong>Mikołaj Mrózek</strong>, providing a
-          seamless and reactive experience.
+          Interfejs użytkownika został zaprojektowany od podstaw przez{" "}
+          <strong>Mikołaja Mrózka</strong>, zapewniając płynne i responsywne
+          doświadczenie.
         </p>
       </>
     ),

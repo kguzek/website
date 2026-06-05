@@ -399,7 +399,7 @@ const projects: ProjectsData = [
     description: { en: "", pl: "" },
     excerpt: {
       en: "This project is a modern web application built for a home renovation services company. It showcases a contractor directory and a user-friendly interface designed with Lucide icons. The Next.js applica…",
-      pl: "This project is a modern web application built for a home renovation services company. It showcases a contractor directory and a user-friendly interface designed with Lucide icons. The Next.js applica…",
+      pl: "Nowoczesna aplikacja internetowa zbudowana dla firmy świadczącej usługi remontowe. Prezentuje katalog wykonawców i wygodny interfejs użytkownika zaprojektowany z ikonami Lucide.",
     },
     repository: "https://github.com/kguzek/gerpol-websites",
     url: "https://das-profiteam-berlin.de",
@@ -446,7 +446,7 @@ const projects: ProjectsData = [
     description: { en: "", pl: "" },
     excerpt: {
       en: "SUILO Website v2 is a responsive single-page-app website created for the School Council of Bilingual High School no. 1, patroned by Edward Dembowski, in Gliwice, Poland. It was tailor-made to the spec…",
-      pl: "SUILO Website v2 is a responsive single-page-app website created for the School Council of Bilingual High School no. 1, patroned by Edward Dembowski, in Gliwice, Poland. It was tailor-made to the spec…",
+      pl: "SUILO Website v2 to responsywna aplikacja typu single-page stworzona dla Samorządu Uczniowskiego I Liceum Ogólnokształcącego Dwujęzycznego im. Edwarda Dembowskiego w Gliwicach.",
     },
     repository: "https://github.com/kguzek/suilo-website-v2",
     url: "https://kguzek.github.io/suilo-website-v2",
