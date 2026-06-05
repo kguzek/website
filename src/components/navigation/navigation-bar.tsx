@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Languages } from "lucide-react";
 
 import type { Locale } from "@/lib/locale";
-import { useScroll } from "@/lib/hooks/scroll";
+import { useIsPageScrolled } from "@/lib/hooks/scroll";
 import { cn } from "@/lib/utils";
 
 import { Logo } from "../image/logo";
@@ -17,7 +17,7 @@ export function NavigationBar({
   pathname: string;
   locale: Locale;
 }) {
-  const { scrollY } = useScroll();
+  const isScrolled = useIsPageScrolled(8);
   const [selectedLocale, setSelectedLocale] = useState(locale);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isLanguageMenuMounted, setIsLanguageMenuMounted] = useState(false);
@@ -85,7 +85,7 @@ export function NavigationBar({
       className={cn(
         "navigation-bar fixed top-0 z-10 flex h-(--navbar-height) w-screen items-center gap-4 border-0 border-b border-solid border-transparent bg-transparent px-4 [transition:all_300ms_ease,border-color_1s_ease] sm:px-10 lg:gap-6",
         {
-          "border-background-soft bg-background-strong/70 backdrop-blur-2xl": scrollY > 0,
+          "border-background-soft bg-background-strong/70 backdrop-blur-2xl": isScrolled,
         },
       )}
     >
