@@ -1,44 +1,77 @@
-"use client";
-
-import { useLocale, useTranslations } from "next-intl";
-
-import { Link, usePathname } from "@/i18n/navigation";
-import { LOCALES } from "@/lib/constants";
+import type { Locale } from "@/lib/locale";
+import { locales } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
-export function LanguageSelector() {
-  const pathname = usePathname();
-  const t = useTranslations();
-  const locale = useLocale();
+interface LanguageSelectorProps {
+  locale: Locale;
+  pathname: string;
+  activeLocale?: Locale;
+  layout?: "horizontal" | "vertical";
+  itemRole?: "menuitemradio";
+  onSelect?: (language: Locale) => void;
+}
+
+export function LanguageSelector({
+  locale,
+  pathname,
+  activeLocale,
+  layout = "horizontal",
+  itemRole,
+  onSelect,
+}: LanguageSelectorProps) {
+  const selectedLocale = activeLocale ?? locale;
+  const isVertical = layout === "vertical";
+  const transitionScope = isVertical ? "mobile" : "desktop";
+
+  function getHref(language: Locale) {
+    if (language === locale) return pathname;
+    if (pathname.startsWith(`/${locale}`)) {
+      return pathname.replace(`/${locale}`, `/${language}`);
+    }
+    return `/${language}${pathname === "/" ? "" : pathname}`;
+  }
+
+  function selectLanguage(language: Locale) {
+    onSelect?.(language);
+  }
 
   return (
-    <div className="my-4 flex flex-col items-center lg:my-0 lg:mr-4">
-      <div className="flex gap-1">
-        <div
-          aria-hidden="true"
-          className={cn(
-            "bg-accent absolute -z-1 size-8 rounded-md transition-transform duration-300",
-            {
-              "translate-x-9": locale === "pl",
-            },
-          )}
-        />
-        {LOCALES.map((language) => (
-          <Link
-            aria-selected={locale === language}
-            locale={language}
-            href={pathname}
+    <div className={cn("flex gap-2", isVertical ? "flex-col" : "items-center")}>
+      <span className={cn("text-primary text-xs font-semibold", isVertical && "sr-only")}>
+        Language
+      </span>
+      <div className={cn("relative flex", isVertical && "flex-col gap-1")}>
+        {locales.map((language) => (
+          <a
             key={language}
-            prefetch={false}
-            className={cn("w-8 cursor-default py-2 text-center text-xs font-semibold", {
-              "clickable cursor-pointer": locale !== language,
-            })}
+            href={getHref(language)}
+            role={itemRole}
+            aria-selected={selectedLocale === language}
+            aria-checked={itemRole ? selectedLocale === language : undefined}
+            onClick={() => selectLanguage(language)}
+            className={cn(
+              "relative flex items-center justify-center overflow-hidden rounded-md text-xs font-semibold",
+              isVertical ? "h-9 w-20" : "w-8 py-2",
+              selectedLocale !== language ? "clickable cursor-pointer" : "cursor-default",
+            )}
           >
-            {language.toUpperCase()}
-          </Link>
+            {selectedLocale === language && (
+              <span
+                aria-hidden="true"
+                className="language-selector-indicator bg-accent pointer-events-none absolute inset-0 z-0 rounded-md"
+              />
+            )}
+            <span
+              className="language-selector-label relative z-10"
+              style={{
+                viewTransitionName: `language-selector-label-${transitionScope}-${language}`,
+              }}
+            >
+              {language.toUpperCase()}
+            </span>
+          </a>
         ))}
       </div>
-      <small className="mt-2 text-xs lg:mt-1">{t("language")}</small>
     </div>
   );
 }

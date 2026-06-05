@@ -2,17 +2,9 @@
 node_modules
 
 # production
-build
+dist
 
 # misc
-.next
 .DS_Store
-.env.local
 tsconfig.tsbuildinfo
 
-# Shell scripts
-*.sh
-
-# SSL Certificates
-certificates
-*.pem

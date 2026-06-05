@@ -5,7 +5,7 @@ import tailwindAnimate from "tailwindcss-animate";
 
 const config: Config = {
   darkMode: "class",
-  content: ["./src/**/*.tsx"],
+  content: ["./src/**/*.tsx", "./index.html"],
   theme: {
     extend: {
       typography: ({ theme }) => ({

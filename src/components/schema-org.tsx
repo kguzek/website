@@ -1,6 +1,7 @@
-type SchemaValue = string | Record<string, string>;
-type NestedSchemaValue = SchemaValue | Record<string, SchemaValue>;
-export type SchemaOrgDefinition = Record<string, NestedSchemaValue | NestedSchemaValue[]>;
+export type SchemaOrgDefinition = Record<
+  string,
+  string | string[] | Record<string, string> | Record<string, string>[]
+>;
 
 export function SchemaOrgScript({ schema }: { schema?: SchemaOrgDefinition }) {
   if (schema == null) return null;
