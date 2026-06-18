@@ -39,8 +39,39 @@ function getMessages(locale: Locale) {
     next: msgs.projects.next,
     gallery: msgs.project.gallery,
     notFoundTitle: msgs.notFound.title,
+    notFoundDescription: msgs.notFound.description,
     notFoundHome: msgs.notFound.home,
   };
+}
+
+function NotFoundPage({
+  locale,
+  messages,
+}: {
+  locale: Locale;
+  messages: Record<string, string>;
+}) {
+  return (
+    <main className="page not-found-page">
+      <div className="not-found-card">
+        <div className="not-found-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <circle cx="21" cy="21" r="13" />
+            <path d="m31 31 9 9" />
+            <path d="M21 13v10" />
+            <path d="M21 29h.01" />
+          </svg>
+        </div>
+        <p className="not-found-code">404</p>
+        <h1 className="not-found-title">{messages.notFoundTitle}</h1>
+        <p className="not-found-description">{messages.notFoundDescription}</p>
+        <a className="button not-found-home" href={`/${locale}`}>
+          <span aria-hidden="true">←</span>
+          {messages.notFoundHome}
+        </a>
+      </div>
+    </main>
+  );
 }
 
 const personSchema = {
@@ -81,32 +112,18 @@ export function App({ path }: { path: string }) {
         />
       );
     } else {
-      content = (
-        <main className="page stack-page">
-          <h1 className="hero-title">{messages.notFoundTitle}</h1>
-          <a className="text-link" href={`/${locale}`}>
-            {messages.notFoundHome}
-          </a>
-        </main>
-      );
+      content = <NotFoundPage locale={locale} messages={messages} />;
     }
   } else {
-    content = (
-      <main className="page stack-page">
-        <h1 className="hero-title">404</h1>
-        <a className="text-link" href={`/${locale}`}>
-          {messages.notFoundHome}
-        </a>
-      </main>
-    );
+    content = <NotFoundPage locale={locale} messages={messages} />;
   }
 
   return (
-    <>
+    <div className="app-shell">
       <SchemaOrgScript schema={personSchema} />
       <NavigationBar pathname={path} locale={locale} />
-      {content}
+      <div className="app-content">{content}</div>
       <Footer />
-    </>
+    </div>
   );
 }

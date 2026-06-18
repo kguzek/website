@@ -21,6 +21,8 @@ export const messages = {
     },
     notFound: {
       title: "Page not found",
+      description:
+        "Sorry, this page does not exist or may have been moved. Head back home to keep exploring.",
       home: "Go home",
     },
   },
@@ -46,6 +48,8 @@ export const messages = {
     },
     notFound: {
       title: "Strona nie znaleziona",
+      description:
+        "Przepraszam, ta strona nie istnieje albo została przeniesiona. Wróć na stronę główną, aby kontynuować.",
       home: "Strona główna",
     },
   },

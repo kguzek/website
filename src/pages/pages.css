@@ -78,8 +78,87 @@
   background: var(--color-accent);
 }
 
+.button.not-found-home {
+  max-width: 100%;
+  min-height: 3.25rem;
+  margin: 0 auto;
+  border-color: var(--color-accent);
+  padding: 0.8rem 1.4rem;
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  color: var(--color-primary-strong);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
 .button:hover {
   opacity: 0.85;
+}
+
+.not-found-page {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  text-align: center;
+}
+
+.not-found-card {
+  display: flex;
+  width: 100%;
+  max-width: 680px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(1rem, 6vw, 4rem);
+}
+
+.not-found-icon {
+  display: grid;
+  width: clamp(4.5rem, 15vw, 7rem);
+  height: clamp(4.5rem, 15vw, 7rem);
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 50%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent);
+}
+
+.not-found-icon svg {
+  width: 58%;
+  height: 58%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.not-found-code {
+  margin: 0;
+  color: var(--color-accent);
+  font-family: var(--font-raleway);
+  font-size: clamp(4.5rem, 18vw, 10rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+}
+
+.not-found-title {
+  margin: 0;
+  color: var(--color-primary-strong);
+  font-family: var(--font-raleway);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.not-found-description {
+  max-width: 36rem;
+  margin: 0;
+  color: var(--color-primary);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .focus-card,
@@ -419,6 +498,34 @@
 }
 
 @media (max-width: 760px) {
+  .button.not-found-home {
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+  .not-found-card {
+    gap: 1rem;
+  }
+
+  .not-found-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .not-found-code {
+    font-size: clamp(4rem, 28vw, 7rem);
+  }
+
+  .not-found-title {
+    font-size: clamp(1.6rem, 8vw, 2.25rem);
+  }
+
+  .not-found-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
   .project-card {
     display: flex;
     flex-direction: column;

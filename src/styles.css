@@ -132,13 +132,31 @@
     list-style: none;
   }
 
-  html {
-    height: 95%;
+  html,
+  body,
+  #root {
+    min-height: 100%;
   }
 
   body {
     font-family: var(--font-raleway);
     font-size: 1.2rem;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  .app-shell {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  .app-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
 
   ::selection {
