@@ -20,6 +20,7 @@ function parseLocale(pathname: string): Locale {
 function getPage(pathname: string): "home" | "project" | "not-found" {
   const parts = pathname.replace(/^\/+/g, "").split("/").filter(Boolean);
   if (parts.length === 0) return "home";
+  if (!isValidLocale(parts[0])) return "not-found";
   if (parts.length === 1) return "home";
   if (parts[1] === "projects" && parts.length === 3) return "project";
   return "not-found";
