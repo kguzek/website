@@ -11,8 +11,8 @@
   "description": "The static portfolio website for guzek.uk.",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && node scripts/prerender.mjs",
+    "dev": "react-router dev",
+    "build": "react-router build",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -24,18 +24,23 @@
   },
   "dependencies": {
     "@codaworks/react-glow": "^1.0.6",
+    "@react-router/node": "^8.0.1",
     "clsx": "^2.1.1",
+    "isbot": "^5",
     "lucide-react": "^0.577.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "react-router": "^8.0.1",
     "simple-icons": "^16.24.0",
     "tailwind-merge": "^3.6.0",
     "yet-another-react-lightbox": "^3.32.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+    "@react-router/dev": "^8.0.1",
     "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^22.20.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
@@ -59,18 +64,9 @@
     "*": "prettier --write --ignore-unknown",
     "*.ts?(x)": "eslint"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@swc/core",
-      "esbuild"
-    ],
-    "ignoredBuiltDependencies": [
-      "@swc/core",
-      "unrs-resolver"
-    ]
-  },
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@11.8.0",
   "volta": {
-    "node": "24.14.0"
+    "node": "24.18.0",
+    "pnpm": "11.9.0"
   }
 }

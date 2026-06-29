@@ -39,15 +39,15 @@ jobs:
         run: pnpm run build
 
       - name: Add CNAME for custom domain
-        run: echo "www.guzek.uk" > dist/CNAME
+        run: echo "www.guzek.uk" > dist/client/CNAME
 
       - name: Add SPA fallback
-        run: cp dist/index.html dist/404.html
+        run: cp dist/client/__spa-fallback.html dist/client/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/client
 
   deploy:
     runs-on: ubuntu-latest

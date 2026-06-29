@@ -4,6 +4,9 @@ node_modules
 # production
 dist
 
+# react-router generated types
+.react-router
+
 # misc
 .DS_Store
 tsconfig.tsbuildinfo
