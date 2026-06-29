@@ -19,7 +19,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "types:check": "tsc --noEmit",
-    "ci": "pnpm types:check && pnpm lint && pnpm build",
+    "types:generate": "react-router typegen",
     "prepare": "husky"
   },
   "dependencies": {
