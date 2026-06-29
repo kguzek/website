@@ -10,7 +10,7 @@ on:
   pull_request:
 
 jobs:
-  lint:
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,6 +29,10 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Generate types
+        run: pnpm run types:generate
+        if: always()
 
       - name: Format check
         run: pnpm run format:check
@@ -42,27 +46,6 @@ jobs:
         run: pnpm run types:check
         if: always()
 
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: "package.json"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install
-
       - name: Build
-        run: pnpm run ci
+        run: pnpm run build
         if: always()
