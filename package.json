@@ -12,7 +12,7 @@
   "private": true,
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build",
+    "build": "react-router build && cp dist/client/__spa-fallback.html dist/client/404.html",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

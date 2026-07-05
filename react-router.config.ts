@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Config } from "@react-router/dev/config";
 
@@ -23,14 +23,6 @@ export default {
     const sitemap = generateSitemap("https://www.guzek.uk", paths);
     writeFileSync(resolve("dist/client/sitemap.xml"), sitemap);
     console.log(`Generated sitemap with ${paths.length} URLs`);
-
-    try {
-      const fallback = readFileSync(resolve("dist/client/__spa-fallback.html"), "utf-8");
-      writeFileSync(resolve("dist/client/404.html"), fallback);
-      console.log("Generated 404.html");
-    } catch {
-      console.warn("Could not generate 404.html (__spa-fallback.html not found yet)");
-    }
 
     return paths;
   },
