@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Languages } from "lucide-react";
+import { Link } from "react-router";
 
 import type { Locale } from "@/lib/locale";
 import { useIsPageScrolled } from "@/lib/hooks/scroll";
@@ -88,9 +89,9 @@ export function NavigationBar({
       )}
     >
       <Logo size={80} />
-      <a href={`/${locale}`} className="font-bold whitespace-nowrap sm:text-3xl">
+      <Link to={`/${locale}`} className="font-bold whitespace-nowrap sm:text-3xl">
         Konrad Guzek
-      </a>
+      </Link>
       <div className="ml-auto flex items-center self-stretch">
         <div ref={languageMenuRef} className="relative flex items-center lg:hidden">
           <button

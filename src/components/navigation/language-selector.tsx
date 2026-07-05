@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 import type { Locale } from "@/lib/locale";
 import { locales } from "@/lib/locale";
 import { cn } from "@/lib/utils";
@@ -42,9 +44,9 @@ export function LanguageSelector({
       </span>
       <div className={cn("relative flex", isVertical && "flex-col gap-1")}>
         {locales.map((language) => (
-          <a
+          <Link
             key={language}
-            href={getHref(language)}
+            to={getHref(language)}
             role={itemRole}
             aria-selected={selectedLocale === language}
             aria-checked={itemRole ? selectedLocale === language : undefined}
@@ -69,7 +71,7 @@ export function LanguageSelector({
             >
               {language.toUpperCase()}
             </span>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { ArrowLeft, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router";
 
 import type { Project } from "@/content/projects";
 import type { Locale } from "@/lib/locale";
@@ -44,12 +45,12 @@ export function ProjectDetailPage({
 
   return (
     <main className="page stack-page project-details">
-      <a
-        href={`/${locale}`}
+      <Link
+        to={`/${locale}`}
         className="back-link text-primary hover:text-primary-strong mb-2 inline-flex w-fit items-center gap-1.5 transition-colors"
       >
         <ArrowLeft size={18} className="back-arrow" /> {messages.back}
-      </a>
+      </Link>
 
       {project.mainImage && (
         <button
@@ -152,8 +153,8 @@ export function ProjectDetailPage({
 
       <div className="project-navigation">
         {prevProject ? (
-          <a
-            href={`/${locale}/projects/${prevProject.slug}`}
+          <Link
+            to={`/${locale}/projects/${prevProject.slug}`}
             className="project-nav-link prev"
           >
             <ChevronLeft size={20} />
@@ -161,13 +162,13 @@ export function ProjectDetailPage({
               <div className="project-nav-label">{messages.previous}</div>
               <div className="project-nav-title">{prevProject.title[locale]}</div>
             </div>
-          </a>
+          </Link>
         ) : (
           <div />
         )}
         {nextProject ? (
-          <a
-            href={`/${locale}/projects/${nextProject.slug}`}
+          <Link
+            to={`/${locale}/projects/${nextProject.slug}`}
             className="project-nav-link next"
           >
             <div>
@@ -175,7 +176,7 @@ export function ProjectDetailPage({
               <div className="project-nav-title">{nextProject.title[locale]}</div>
             </div>
             <ChevronRight size={20} />
-          </a>
+          </Link>
         ) : (
           <div />
         )}

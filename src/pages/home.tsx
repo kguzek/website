@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router";
 
 import type { Project } from "@/content/projects";
 import type { Locale } from "@/lib/locale";
@@ -25,9 +26,9 @@ export function HomePage({ locale, projects, messages }: HomePageProps) {
         <h2 className="projects-heading">{messages.projects}</h2>
         <div className="project-grid">
           {projects.map((project) => (
-            <a
+            <Link
               key={project.id}
-              href={`/${locale}/projects/${project.slug}`}
+              to={`/${locale}/projects/${project.slug}`}
               className="project-card"
             >
               {project.mainImage && (
@@ -58,7 +59,7 @@ export function HomePage({ locale, projects, messages }: HomePageProps) {
                 </div>
               </div>
               <ArrowUpRight className="card-arrow" aria-hidden />
-            </a>
+            </Link>
           ))}
         </div>
       </section>
