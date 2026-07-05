@@ -1,4 +1,4 @@
-import { isRouteErrorResponse, Outlet, useLocation } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
 import type { Project } from "@/content/projects";
 import type { Locale } from "@/lib/locale";
@@ -66,7 +66,7 @@ const personSchema = {
   jobTitle: "Software Developer",
 };
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary(_: Route.ErrorBoundaryProps) {
   const pathname = useLocation().pathname;
   const localeSegment = pathname.split("/")[1];
   const locale =
@@ -79,19 +79,15 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     notFoundHome: msgs.notFound.home,
   };
 
-  if (isRouteErrorResponse(error) && error.status === 404) {
-    return (
-      <div className="app-shell">
-        <NavigationBar pathname={pathname} locale={locale} />
-        <div className="app-content">
-          <NotFoundPage locale={locale} messages={messages} />
-        </div>
-        <Footer />
+  return (
+    <div className="app-shell">
+      <NavigationBar pathname={pathname} locale={locale} />
+      <div className="app-content">
+        <NotFoundPage locale={locale} messages={messages} />
       </div>
-    );
-  }
-
-  throw error;
+      <Footer />
+    </div>
+  );
 }
 
 export default function Layout({ loaderData }: Route.ComponentProps) {
