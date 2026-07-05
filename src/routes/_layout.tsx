@@ -8,7 +8,7 @@ import { SchemaOrgScript } from "@/components/schema-org";
 import { messages as allMessages } from "@/content/i18n";
 import { getProjects } from "@/content/projects-data";
 import { GITHUB_URL, PRODUCTION_URL } from "@/lib/constants";
-import { defaultLocale, isValidLocale } from "@/lib/locale";
+import { defaultLocale, isValidLocale, redirectToLocalizedUrl } from "@/lib/locale";
 
 import type { Route } from "./+types/_layout";
 
@@ -16,6 +16,12 @@ export interface LayoutContext {
   locale: Locale;
   messages: Record<string, string>;
   projects: Project[];
+}
+
+export function clientLoader({ params, serverLoader }: Route.ClientLoaderArgs) {
+  if (!params.locale) return redirectToLocalizedUrl();
+
+  return serverLoader();
 }
 
 export function loader({ params }: Route.LoaderArgs) {
