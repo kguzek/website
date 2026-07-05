@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router";
+import { isRouteErrorResponse, Outlet, useLocation } from "react-router";
 
 import type { Project } from "@/content/projects";
 import type { Locale } from "@/lib/locale";
@@ -9,6 +9,7 @@ import { messages as allMessages } from "@/content/i18n";
 import { getProjects } from "@/content/projects-data";
 import { GITHUB_URL, PRODUCTION_URL } from "@/lib/constants";
 import { defaultLocale, isValidLocale, redirectToLocalizedUrl } from "@/lib/locale";
+import { NotFoundPage } from "@/pages/not-found";
 
 import type { Route } from "./+types/_layout";
 
@@ -64,6 +65,34 @@ const personSchema = {
   sameAs: ["https://www.linkedin.com/in/konrad-guzek/", GITHUB_URL],
   jobTitle: "Software Developer",
 };
+
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  const pathname = useLocation().pathname;
+  const localeSegment = pathname.split("/")[1];
+  const locale =
+    localeSegment && isValidLocale(localeSegment) ? localeSegment : defaultLocale;
+  const msgs = allMessages[locale] || allMessages.en;
+
+  const messages = {
+    notFoundTitle: msgs.notFound.title,
+    notFoundDescription: msgs.notFound.description,
+    notFoundHome: msgs.notFound.home,
+  };
+
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return (
+      <div className="app-shell">
+        <NavigationBar pathname={pathname} locale={locale} />
+        <div className="app-content">
+          <NotFoundPage locale={locale} messages={messages} />
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  throw error;
+}
 
 export default function Layout({ loaderData }: Route.ComponentProps) {
   const pathname = useLocation().pathname;

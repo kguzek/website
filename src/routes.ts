@@ -6,4 +6,5 @@ export default [
     index("./routes/_layout.home.tsx"),
     route("projects/:slug", "./routes/_layout.projects.$slug.tsx"),
   ]),
+  route("*", "./routes/$.tsx"),
 ] satisfies RouteConfig;
