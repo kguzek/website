@@ -17,6 +17,17 @@ export function loader({ params }: Route.LoaderArgs) {
   return { project, prevProject, nextProject };
 }
 
+export function clientLoader({ params }: Route.ClientLoaderArgs) {
+  const slug = params.slug!;
+  const project = getProject(slug);
+  if (!project) {
+    throw new Response("Not Found", { status: 404 });
+  }
+  const prevProject = getAdjacentProject(slug, "prev");
+  const nextProject = getAdjacentProject(slug, "next");
+  return { project, prevProject, nextProject };
+}
+
 export default function ProjectDetail({ loaderData }: Route.ComponentProps) {
   const { locale, messages } = useOutletContext<LayoutContext>();
   const { project, prevProject, nextProject } = loaderData;
