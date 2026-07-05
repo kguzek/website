@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 import type { Locale } from "@/lib/locale";
 
 interface NotFoundPageProps {
@@ -19,9 +21,9 @@ export function NotFoundPage({ locale, messages }: NotFoundPageProps) {
         <p className="not-found-code">404</p>
         <h1 className="not-found-title">{messages.notFoundTitle}</h1>
         <p className="not-found-description">{messages.notFoundDescription}</p>
-        <a href={`/${locale}`} className="button not-found-home">
+        <Link to={`/${locale}`} className="button not-found-home">
           {messages.notFoundHome}
-        </a>
+        </Link>
       </div>
     </main>
   );
