@@ -33,8 +33,8 @@ importers:
         specifier: ^8.1.0
         version: 8.1.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       simple-icons:
-        specifier: ^16.25.0
-        version: 16.25.0
+        specifier: ^16.26.0
+        version: 16.26.0
       tailwind-merge:
         specifier: ^3.6.0
         version: 3.6.0
@@ -1667,8 +1667,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  simple-icons@16.25.0:
-    resolution: {integrity: sha512-ReYPfbqjkTBovxjerHw2tf6E1rQdaCqNJKaJbd78Mui8w+78xQlE1aDO/2ekID++n8qa+1t+oaueYLeiSoQsIA==}
+  simple-icons@16.26.0:
+    resolution: {integrity: sha512-T9rNJtyOshULM8heLlvrZY346g9zOgZILQ3vxP+FWcX13RhaOLez7YM/hNCEx3b5gJckSCNDoNsjZuDncSMYSQ==}
     engines: {node: '>=0.12.18'}
 
   slice-ansi@7.1.2:
@@ -3265,7 +3265,7 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  simple-icons@16.25.0: {}
+  simple-icons@16.26.0: {}
 
   slice-ansi@7.1.2:
     dependencies:
