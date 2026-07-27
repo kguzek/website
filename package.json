@@ -30,7 +30,7 @@
     "lucide-react": "^0.577.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router": "^8.2.0",
+    "react-router": "^8.3.0",
     "simple-icons": "^16.27.0",
     "tailwind-merge": "^3.6.0",
     "yet-another-react-lightbox": "^3.32.1"
