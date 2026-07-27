@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6(react@19.2.8)(tailwindcss@4.3.3)
       '@react-router/node':
-        specifier: ^8.2.0
-        version: 8.2.0(react-router@8.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@5.9.3)
+        specifier: ^8.3.0
+        version: 8.3.0(react-router@8.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@5.9.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
