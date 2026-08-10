@@ -39,8 +39,8 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       yet-another-react-lightbox:
-        specifier: ^3.32.1
-        version: 3.32.1(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: ^3.32.2
+        version: 3.32.2(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
     devDependencies:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.7.1
@@ -1921,8 +1921,8 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
-  yet-another-react-lightbox@3.32.1:
-    resolution: {integrity: sha512-/OK5U79uTD2kGv3m+w22IDCuVtgC0l9J2SwJRYE+88XqfkWwVkAVNbE8AdWozAlPFTjGiIyPHxukoIINH9mpiw==}
+  yet-another-react-lightbox@3.32.2:
+    resolution: {integrity: sha512-F4HtHQfUNpvkj+AmECgWM4XRdCqMY5gXpKgOUx39+T+FyxLe8II4SK/pwMyYj2X54KH9lFSQeHYY1/GfYf3SdA==}
     engines: {node: '>=14'}
     peerDependencies:
       '@types/react': ^16 || ^17 || ^18 || ^19
@@ -3507,7 +3507,7 @@ snapshots:
 
   yaml@2.9.0: {}
 
-  yet-another-react-lightbox@3.32.1(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+  yet-another-react-lightbox@3.32.2(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
