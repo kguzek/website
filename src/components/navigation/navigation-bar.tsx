@@ -88,7 +88,7 @@ export function NavigationBar({
         },
       )}
     >
-      <Logo size={80} />
+      <Logo size={80} locale={locale} />
       <Link to={`/${locale}`} className="font-bold whitespace-nowrap sm:text-3xl">
         Konrad Guzek
       </Link>

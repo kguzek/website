@@ -85,7 +85,7 @@ export function ErrorBoundary(_: Route.ErrorBoundaryProps) {
       <div className="app-content">
         <NotFoundPage locale={locale} messages={messages} />
       </div>
-      <Footer />
+      <Footer locale={locale} />
     </div>
   );
 }
@@ -100,7 +100,7 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
       <div className="app-content">
         <Outlet context={loaderData satisfies LayoutContext} />
       </div>
-      <Footer />
+      <Footer locale={loaderData.locale} />
     </div>
   );
 }

@@ -38,7 +38,7 @@ export default function NotFoundCatchAll() {
       <div className="app-content">
         <NotFoundPage locale={locale} messages={messages} />
       </div>
-      <Footer />
+      <Footer locale={locale} />
     </div>
   );
 }
